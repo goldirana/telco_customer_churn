@@ -184,7 +184,6 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
     ('index',
-     'version1.tex',
      u'telco_customer_churn Documentation',
      u"Rajesh Goldy", 'manual'),
 ]
@@ -215,7 +214,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'version1', u'telco_customer_churn Documentation',
+    ('index', u'telco_customer_churn Documentation',
      [u"Rajesh Goldy"], 1)
 ]
 
@@ -229,7 +228,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'version1', u'telco_customer_churn Documentation',
+    ('index', u'telco_customer_churn Documentation',
      u"Rajesh Goldy", 'telco_customer_churn',
      'Telco customer churn is a dataset hosted by IBM. This project is used to implement end to end project using concepts like modular programming and tools like mlflow, dvc, and git.', 'Miscellaneous'),
 ]
