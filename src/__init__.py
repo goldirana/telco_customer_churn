@@ -4,7 +4,7 @@ import os
 log_dir = "logs"
 log_file_name = "running.log"
 # create logs dir
-os.makedirs(os.join.path(log_dir, log_file_name), exist_ok=True)
+os.makedirs(os.path.join(log_dir, log_file_name), exist_ok=True)
 # basic logging configuration
 
 file_handler = logging.FileHandler(filename=os.path.join(log_dir,
