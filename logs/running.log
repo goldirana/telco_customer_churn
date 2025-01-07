@@ -1,0 +1,8 @@
+2025-01-07 20:27:36,930 - root - INFO - Yaml read successfully from /Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/params.yaml
+2025-01-07 20:27:36,932 - Data Ingestion - ERROR - Error occured while reading data: Invalid file path or buffer object type: <class '__main__.data_ingestion'>
+2025-01-07 20:28:12,109 - root - INFO - Yaml read successfully from /Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/params.yaml
+2025-01-07 20:28:32,765 - root - INFO - Yaml read successfully from /Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/params.yaml
+2025-01-07 20:28:35,779 - root - INFO - Yaml read successfully from /Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/params.yaml
+2025-01-07 20:28:35,780 - Data Ingestion - ERROR - FileNotFoundError data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+2025-01-07 20:29:07,082 - root - INFO - Yaml read successfully from /Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/params.yaml
+2025-01-07 20:29:07,120 - Data Ingestion - INFO - Data read sucessfully ../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv

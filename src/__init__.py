@@ -3,7 +3,7 @@ import os
 import yaml
 
 
-log_dir = "logs"
+log_dir = "../logs"
 log_file_name = "running.log"
 # create logs dir
 os.makedirs(log_dir, exist_ok=True)
@@ -12,7 +12,7 @@ os.makedirs(log_dir, exist_ok=True)
 file_handler = logging.FileHandler(filename=os.path.join(log_dir,
                                                          log_file_name))
 stream_handler = logging.StreamHandler()
-logging_format = "%(asctime)s - %(name)s - %(level)s - %(msg)s"
+logging_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
 logging.basicConfig(
     level=logging.DEBUG,
