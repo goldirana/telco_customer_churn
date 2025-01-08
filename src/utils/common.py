@@ -4,6 +4,8 @@ from box import ConfigBox
 from ensure import ensure_annotations
 import os
 from pathlib import Path
+from typing import Any
+import pickle
 
 
 def create_directory(path: str, is_extension_present: bool=True)-> None:
@@ -71,3 +73,24 @@ def read_yaml(path: str, format: str="r"):
     except Exception as e:
         logger.error(f"Exception occured while reading yaml file from \
                         location: {path}\n {e}")
+        
+def save_pickle(object: Any, path: str):
+    try:
+        create_directory(path, is_extension_present=True)
+        with open(path, "wb") as f:
+            pickle.dump(object, f)
+        logger.info("Pickle object stored at %s", path)
+    except pickle.PickleError as e:
+        logger.error(e)
+    except Exception as e:
+        logger.error(e)
+
+def read_pickle(path: str):
+    try:
+        path = str(Path(path).resolve())
+        print(path)
+        with open(path, "rb") as f:
+            params = pickle.load(f)
+            return params
+    except Exception as e:
+        logger.error("Error occured while reading pickle %s", e)
