@@ -1,4 +1,8 @@
-"""This file is designed to manage the configuration parameters"""
+"""The job of this file is read all the raw data from different sources and converting
+into entities defined in entity/config_entity.py. instead of reading data in each module this 
+serves the purpose and reduces the complexity of reading files. This is also helpful as the complexity 
+of the project grows and you require more parameters"""
+
 from src.constants import *
 from src import logger
 from src.utils.common import read_yaml
