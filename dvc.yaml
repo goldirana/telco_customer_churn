@@ -1,0 +1,22 @@
+stages:
+  data_ingestion:
+    cmd: src/pipeline/stage0_data_ingestion.py
+    deps:
+      - data/raw
+      - src/pipeline/stage0_data_ingestion.py
+    params:
+      - make_dataset.test_size
+    outs:
+      - data/interim
+
+  build_data:
+    cmd: src/pipeline/stage1_build_train.py
+    deps:
+      - data/interim/train/train.csv
+      - data/interim/test/test.csv
+      - src/pipeline/stage1_build_train.py
+    params:
+      - data.drop_columns
+    outs:
+      - data/processed
+    

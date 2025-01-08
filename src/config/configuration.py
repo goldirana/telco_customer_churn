@@ -28,6 +28,14 @@ class ConfigurationManager:
 
     def get_feature_engineering_config(self)-> FeatureEngineeringConfig:
         feature_engineering_conf = FeatureEngineeringConfig(
-            encoder_dir=self.config.artifacts.encoder
+            train_dir = self.config.data_directory.interim_train,
+            test_dir = self.config.data_directory.interim_test,
+            encoder_dir=self.config.artifacts.encoder,
+            scalar_dir=self.config.artifacts.scalar,
+            target_col=self.params.data.target_col,
+            drop_cols=self.params.data.drop_columns,
+            processed_train=self.config.data_directory.processed_train,
+            processed_test=self.config.data_directory.processed_test,
+            col_names_to_save=self.config.artifacts.col_names_to_save
         )
         return feature_engineering_conf

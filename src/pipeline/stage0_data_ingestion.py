@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from src import logger
 from src.data.make_dataset import DataIngestion
 from src.config.configuration import ConfigurationManager

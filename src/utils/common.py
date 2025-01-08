@@ -6,6 +6,9 @@ import os
 from pathlib import Path
 from typing import Any
 import pickle
+import numpy as np
+import pandas as pd
+import joblib
 
 
 def create_directory(path: str, is_extension_present: bool=True)-> None:
@@ -88,9 +91,31 @@ def save_pickle(object: Any, path: str):
 def read_pickle(path: str):
     try:
         path = str(Path(path).resolve())
-        print(path)
         with open(path, "rb") as f:
             params = pickle.load(f)
+            logger.info("Read pickle from dir: %s", path)
             return params
     except Exception as e:
         logger.error("Error occured while reading pickle %s", e)
+
+def save_array(arr: np.array, path: str):
+    try:
+        np.save(path, arr)
+        logger.info("Numpy array saved at %s", path)
+    except Exception as e:
+        logger.info(f"Error occured while saving data at {path} \n{e}")
+
+def save_col_names(data: pd.DataFrame, path_to_json: str):
+    """
+    To save the column names of the dataframe
+    Args:
+        data: dataframe from column needs to be extracted
+        path: json file path to save column names
+    """
+    try:
+        columns = data.columns.tolist()
+        with open(path_to_json, "w") as f:
+            json.dump(columns, f)
+        logger.info(f"Column name saved at: {path_to_json}")
+    except Exception as e:
+        logger.error(e)

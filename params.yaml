@@ -2,5 +2,13 @@
 make_dataset:
   test_size: 0.2
 
+data:
+  target_col: "Churn"
+  drop_columns:
+    - customerID
+    - TotalCharges
+  
+
+
 
 

@@ -1,0 +1,49 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: src/pipeline/stage0_data_ingestion.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 175fa0f786e630c200de8d1d009ea505.dir
+      size: 983649
+      nfiles: 3
+    - path: src/pipeline/stage0_data_ingestion.py
+      hash: md5
+      md5: 2a2c8f71a9546750dbb520b18509d4f9
+      size: 1086
+    params:
+      params.yaml:
+        make_dataset.test_size: 0.2
+    outs:
+    - path: data/interim
+      hash: md5
+      md5: 9b76daba3eb51f3f6ea9a5d854315501.dir
+      size: 971501
+      nfiles: 2
+  build_data:
+    cmd: src/pipeline/stage1_build_train.py
+    deps:
+    - path: data/interim/test/test.csv
+      hash: md5
+      md5: 6152a9fdcd3f3924caf11826f16d49d3
+      size: 195230
+    - path: data/interim/train/train.csv
+      hash: md5
+      md5: 9db997ad85556edc689cbafc156129ab
+      size: 776271
+    - path: src/pipeline/stage1_build_train.py
+      hash: md5
+      md5: 729cb08b13f17d8a731ec48e7d540144
+      size: 3834
+    params:
+      params.yaml:
+        data.drop_columns:
+        - customerID
+        - TotalCharges
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: a6451d7651222a7c8822fe0811f85d0e.dir
+      size: 499975
+      nfiles: 1

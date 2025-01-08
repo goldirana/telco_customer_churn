@@ -57,7 +57,7 @@ class DataIngestion:
         except Exception as e:
             logger.error(f"Error occured while saving data at: {location}\n {e}")
         
-    def split_x_y(df:pd.DataFrame, target: str) -> tuple:
+    def split_x_y(self, df:pd.DataFrame, target: str) -> tuple:
         """Splits the independent and target variable
 
         Args:

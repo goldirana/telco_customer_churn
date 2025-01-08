@@ -12,4 +12,12 @@ class DataIngestionConfig:
 
 @dataclass(frozen=True)
 class FeatureEngineeringConfig:
+    train_dir: str
+    test_dir: str
     encoder_dir: str
+    scalar_dir: str
+    target_col: str
+    drop_cols: list
+    processed_train: str
+    processed_test: str
+    col_names_to_save: str
