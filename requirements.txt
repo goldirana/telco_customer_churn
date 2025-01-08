@@ -11,3 +11,4 @@ dvc
 mlflow==2.2.2
 tqdm
 ensure
+notebook
