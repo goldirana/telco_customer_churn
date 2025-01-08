@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: src
-Version: 0.1.0
-Summary: Telco customer churn is a dataset hosted by IBM. This project is used to implement end to end project using concepts like modular programming and tools like mlflow, dvc, and git.
-Author: Rajesh Goldy
-License: MIT
-License-File: LICENSE
