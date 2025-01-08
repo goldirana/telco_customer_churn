@@ -7,6 +7,12 @@ from pathlib import Path
 
 
 def create_directory(path: str, is_extension_present: bool=True)-> None:
+    """Create directory at given location
+    
+    Args:
+        path(str): path where directory needs to be created
+        is_extension_present: whether extension of file present in path
+            If present then extract the root path and creates directory"""
     if is_extension_present: # remove extension to create directory
             path = str(split_file_extension(path))
     _ = check_directory_path(path)
@@ -21,6 +27,11 @@ def create_directory(path: str, is_extension_present: bool=True)-> None:
         logger.error(f"Error occured while creating directory at {path} \n{e}")
 
 def split_file_extension(path: str) -> str:
+    """
+    To remove the extension name from the given path
+    Args:
+        path: str
+    """
     try:
         root_dir = str(Path(path).resolve().parent)
         logger.debug("File path without extension is %s", root_dir)
@@ -30,6 +41,13 @@ def split_file_extension(path: str) -> str:
 
 
 def check_directory_path(path: str) -> None:
+    """
+    To check whether directory presents at given location
+    Args:
+        path(str)
+    Return:
+        Boolean
+    """
     try:
         check = os.path.isdir(path)
         if check:
