@@ -22,7 +22,7 @@ stages:
       size: 971501
       nfiles: 2
   build_data:
-    cmd: src/pipeline/stage1_build_train.py
+    cmd: src/pipeline/stage1_build_data.py
     deps:
     - path: data/interim/test/test.csv
       hash: md5
@@ -32,7 +32,7 @@ stages:
       hash: md5
       md5: 9db997ad85556edc689cbafc156129ab
       size: 776271
-    - path: src/pipeline/stage1_build_train.py
+    - path: src/pipeline/stage1_build_data.py
       hash: md5
       md5: 729cb08b13f17d8a731ec48e7d540144
       size: 3834
@@ -44,6 +44,6 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: a6451d7651222a7c8822fe0811f85d0e.dir
+      md5: 059973227797332ce2f9b2497ef23f79.dir
       size: 499975
       nfiles: 1

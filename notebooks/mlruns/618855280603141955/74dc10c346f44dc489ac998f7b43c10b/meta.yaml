@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/goldyrana/mess/deep_learning/projects/telco_customer_churn/notebooks/mlruns/618855280603141955/74dc10c346f44dc489ac998f7b43c10b/artifacts
+end_time: 1736359271124
+entry_point_name: ''
+experiment_id: '618855280603141955'
+lifecycle_stage: active
+run_id: 74dc10c346f44dc489ac998f7b43c10b
+run_name: upbeat-deer-831
+run_uuid: 74dc10c346f44dc489ac998f7b43c10b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736359095773
+status: 3
+tags: []
+user_id: goldyrana

@@ -28,8 +28,8 @@ class ConfigurationManager:
 
     def get_feature_engineering_config(self)-> FeatureEngineeringConfig:
         feature_engineering_conf = FeatureEngineeringConfig(
-            train_dir = self.config.data_directory.interim_train,
-            test_dir = self.config.data_directory.interim_test,
+            train_dir = str(Path(self.config.data_directory.interim_train)),
+            test_dir = str(Path(self.config.data_directory.interim_test)),
             encoder_dir=self.config.artifacts.encoder,
             scalar_dir=self.config.artifacts.scalar,
             target_col=self.params.data.target_col,

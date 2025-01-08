@@ -7,5 +7,15 @@ data:
   drop_columns:
     - customerID
     - TotalCharges
+
+model:
+  experiment_name: "xxx"
+  sub_model: ensemble
+  model_name: RandomForestClassifier
+  metrics:
+    - accuracy_score
+    - precision_score
+    - recall_score
+
   
 

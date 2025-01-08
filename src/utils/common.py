@@ -105,6 +105,15 @@ def save_array(arr: np.array, path: str):
     except Exception as e:
         logger.info(f"Error occured while saving data at {path} \n{e}")
 
+def read_array(path: str):
+    try:
+        data = np.load(path, allow_pickle=True, mmap_mode="r", fix_imports=True)
+        logger.info("Numpy array read sucessfully from %s", path)
+        return data
+    except Exception as e:
+        logger.error(e)
+        raise e
+
 def save_col_names(data: pd.DataFrame, path_to_json: str):
     """
     To save the column names of the dataframe
