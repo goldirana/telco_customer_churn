@@ -3,6 +3,8 @@ from src.utils.common import read_yaml, create_directory
 import pandas as pd
 from src import logger
 from pathlib import Path
+from src.constants import *
+from src.config.configuration import ConfigurationManager
 
 STAGE_NAME = "Data Ingestion"
 logger.name = STAGE_NAME
