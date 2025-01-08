@@ -1,5 +1,6 @@
+# this file will be used to store the model parameters
 make_dataset:
   test_size: 0.2
 
-directory:
-  raw: ../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+
+

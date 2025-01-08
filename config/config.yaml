@@ -1,0 +1,8 @@
+## this file will be used to store the directories
+
+data_directory:
+  raw: ../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+  interim_train: ../data/interim/train/train.csv
+  interim_test: ../data/interim/test/test.csv
+  processed_train: ../data/processed/train/train.csv
+  processed_test: ../data/processed/test/test.csv
