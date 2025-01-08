@@ -6,7 +6,8 @@ of the project grows and you require more parameters"""
 from src.constants import *
 from src import logger
 from src.utils.common import read_yaml
-from src.entity.config_entity import DataIngestionConfig
+from src.entity.config_entity import (DataIngestionConfig,
+                                      FeatureEngineeringConfig)
 
 logger.name = "Configuration Manager"
 
@@ -24,3 +25,9 @@ class ConfigurationManager:
             test_dir=self.config.data_directory.interim_test,
             test_size=self.params.make_dataset.test_size)
         return data_ingestion_config
+
+    def get_feature_engineering_config(self)-> FeatureEngineeringConfig:
+        feature_engineering_conf = FeatureEngineeringConfig(
+            encoder_dir=self.config.artifacts.encoder
+        )
+        return feature_engineering_conf

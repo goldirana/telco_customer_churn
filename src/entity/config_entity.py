@@ -8,3 +8,8 @@ class DataIngestionConfig:
     train_dir: str
     test_dir: str
     test_size: float
+
+
+@dataclass(frozen=True)
+class FeatureEngineeringConfig:
+    encoder_dir: str

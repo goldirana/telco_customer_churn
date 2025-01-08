@@ -6,3 +6,6 @@ data_directory:
   interim_test: ../data/interim/test/test.csv
   processed_train: ../data/processed/train/train.csv
   processed_test: ../data/processed/test/test.csv
+
+artifacts:
+  encoder: ../artifacts/encoder.pkl
