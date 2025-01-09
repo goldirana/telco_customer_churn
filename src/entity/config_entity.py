@@ -45,3 +45,9 @@ class ModelEvaluationConfig:
     target_col: str
     experiment_name: str
     parent_run_dir: str
+
+@dataclass
+class DagsHubConfig:
+    repo_owner: str
+    repo_name: str
+    tracking_ui: str

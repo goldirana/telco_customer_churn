@@ -6,14 +6,14 @@ from src import logger
 from dataclasses import dataclass
 from box import ConfigBox
 from typing import Optional
-from src.config.configuration import ModelBuildingConfig
+from src.config.configuration import ModelBuildingConfig, DagsHubConfig
 
 # model building
 import sklearn as sk
 from importlib import import_module
 import mlflow, json
 import sys
-
+import dagshub
 
 STAGE_NAME = "STAGE 2: MODEL BUILDING"
 logger.name = STAGE_NAME
@@ -26,8 +26,15 @@ def get_experiment_name_and_id(path_to_json):
             "run_id": run_id}
 
 class BuildModel:
-    def __init__(self, config: ModelBuildingConfig):
+    def __init__(self, config: ModelBuildingConfig,
+                 dags_hub_config: DagsHubConfig):
+        
         self.config = config
+        self.dags_config = dags_hub_config
+
+        dagshub.init(repo_owner=self.dags_config.repo_owner,
+                     repo_name=self.dags_config.repo_name, 
+                     mlflow=True)
 
     def get_model_class(self):
         try:
@@ -42,6 +49,7 @@ class BuildModel:
 
     def log_metrics(self, model, metrics: list, y_true, y_pred, data_name:str="Train"):
         mlflow.end_run()
+        mlflow.set_tracking_uri(self.dags_config.tracking_ui)
         try:
             try: # to get the tracking parameters
                 tracking_params = get_experiment_name_and_id(self.config.parent_run_dir)
@@ -84,8 +92,10 @@ class BuildModel:
         try:
             model = self.get_model_class()
             # initiating model
+            mlflow.set_tracking_uri(self.dags_config.tracking_ui)
             mlflow.set_experiment(self.config.experiment_name)
             mlflow.start_run()
+            
             # to save the active run parameters            
             self.record_mlflow_params(dict(mlflow.active_run().info), self.config.parent_run_dir)
 

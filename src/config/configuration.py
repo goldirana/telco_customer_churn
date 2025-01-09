@@ -9,7 +9,8 @@ from src.utils.common import read_yaml
 from src.entity.config_entity import (DataIngestionConfig,
                                       FeatureEngineeringConfig,
                                       ModelBuildingConfig,
-                                      ModelEvaluationConfig)
+                                      ModelEvaluationConfig,
+                                      DagsHubConfig)
 
 logger.name = "Configuration Manager"
 
@@ -18,6 +19,7 @@ class ConfigurationManager:
         config_file_path=CONFIG_FILE_PATH,
         params_file_path=PARAMS_FILE_PATH):
         self.config = read_yaml(config_file_path)
+        # print(self.config)
         self.params = read_yaml(params_file_path)
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
@@ -55,7 +57,7 @@ class ConfigurationManager:
             parent_run_dir=self.config.artifacts.parent_run_dir,
             metrics=self.params.model.metrics,
             save_model_path=self.config.model.root_dir,
-            model_params=self.params.model_params[model_args_name]        )
+            model_params=self.params.model_params[model_args_name])
         return model_building_conf
     
     def get_evaluation_config(self)-> ModelEvaluationConfig:
@@ -68,6 +70,15 @@ class ConfigurationManager:
         parent_run_dir=self.config.artifacts.parent_run_dir)
         return model_evaluator_config
 
+    def get_dagshub_config(self)-> DagsHubConfig:
+        dagshub_config=DagsHubConfig(
+            repo_owner=self.config.dags_hub.repo_owner,
+            repo_name=self.config.dags_hub.repo_name,
+            tracking_ui=self.config.dags_hub.tracking_ui
+        )
+        return dagshub_config   
+    
+
 if __name__ == "__main__":
     config_manager = ConfigurationManager()
     print(config_manager.params)
@@ -78,3 +89,5 @@ if __name__ == "__main__":
     print(config_manager.get_evaluation_config())
     print("--"*30)
     print(config_manager.get_model_building_config())
+    print("---"*45)
+    print(config_manager.get_dagshub_config())

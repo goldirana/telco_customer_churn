@@ -18,7 +18,10 @@ class ModelEvaluationPipeline:
     def main(self):
         config_manager = ConfigurationManager()
         config_params = config_manager.get_evaluation_config()
-        model_evaluator = ModelEvaluation(config_params)
+        dags_params = config_manager.get_dagshub_config()
+
+        model_evaluator = ModelEvaluation(config_params,
+                                          dags_params)
         data_ingestion = DataIngestion()
 
         test = data_ingestion.get_data(config_params.test_dir)

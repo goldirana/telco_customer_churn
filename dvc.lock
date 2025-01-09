@@ -60,12 +60,12 @@ stages:
       size: 2235607
     - path: src/models/train_model.py
       hash: md5
-      md5: ea681d042ced00a7905fee24ccb96e03
-      size: 4230
+      md5: 7b2e5d699997376dee606a19bd107939
+      size: 4657
     - path: src/pipeline/stage2_build_model.py
       hash: md5
-      md5: 556dfcd8883c76658b253c4bed4b76b7
-      size: 1049
+      md5: ad50fa3eb22448239084b077efe055fb
+      size: 1174
     params:
       params.yaml:
         model.experiment_name: xxx
@@ -78,10 +78,10 @@ stages:
         model.sub_model: ensemble
         model_params:
           random_forest_params:
-            n_estimators: 100
+            n_estimators: 120
             criterion: gini
-            max_depth: 4
-            min_samples_split: 4
+            max_depth: 5
+            min_samples_split: 2
             min_samples_leaf: 2
             max_features: sqrt
           LogisticRegression:
@@ -89,8 +89,8 @@ stages:
     outs:
     - path: models/
       hash: md5
-      md5: 7786648c4480a0b9de8f095b738a0100.dir
-      size: 279648
+      md5: 20e5567e49612ea901c12f71bf9f4f78.dir
+      size: 634373
       nfiles: 5
   model_evaluator:
     cmd: src/pipeline/stage3_model_evaluator.py
@@ -101,17 +101,17 @@ stages:
       size: 248901
     - path: models/
       hash: md5
-      md5: 7786648c4480a0b9de8f095b738a0100.dir
-      size: 279648
+      md5: 20e5567e49612ea901c12f71bf9f4f78.dir
+      size: 634373
       nfiles: 5
     - path: src/models/train_model.py
       hash: md5
-      md5: ea681d042ced00a7905fee24ccb96e03
-      size: 4230
+      md5: 7b2e5d699997376dee606a19bd107939
+      size: 4657
     - path: src/pipeline/stage3_model_evaluator.py
       hash: md5
-      md5: b425e3781d415c40ec1bb98a11f3062a
-      size: 1147
+      md5: 60241a2b7c7fc3eaced3f48a9c13a12c
+      size: 1261
     params:
       params.yaml:
         model.experiment_name: xxx
@@ -123,10 +123,10 @@ stages:
         model.sub_model: ensemble
         model_params:
           random_forest_params:
-            n_estimators: 100
+            n_estimators: 120
             criterion: gini
-            max_depth: 4
-            min_samples_split: 4
+            max_depth: 5
+            min_samples_split: 2
             min_samples_leaf: 2
             max_features: sqrt
           LogisticRegression:

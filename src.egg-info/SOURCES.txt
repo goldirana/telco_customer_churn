@@ -22,5 +22,7 @@ src/models/train_model.py
 src/pipeline/__init__.py
 src/pipeline/stage0_data_ingestion.py
 src/pipeline/stage1_build_data.py
+src/pipeline/stage2_build_model.py
+src/pipeline/stage3_model_evaluator.py
 src/utils/__init__.py
 src/utils/common.py

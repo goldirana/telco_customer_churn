@@ -4,6 +4,8 @@ from src.models.train_model import BuildModel
 from src import logger
 from src.config.configuration import ConfigurationManager
 from src.data.make_dataset import DataIngestion
+import dagshub
+
 
 STAGE_NAME =  "STAGE 2: BUILD MODEL"
 logger.name = STAGE_NAME
@@ -15,7 +17,10 @@ class BuildModelPipeline:
     def main(self):
         config_manager = ConfigurationManager()
         config_params = config_manager.get_model_building_config()
-        build_model = BuildModel(config_params)
+        dags_params = config_manager.get_dagshub_config()
+    
+        build_model = BuildModel(config_params,
+                                 dags_params)
         data_ingestion = DataIngestion()
         train = data_ingestion.get_data(config_params.train_dir)
         x_train, y_train = data_ingestion.split_x_y(train, config_params.target_col)

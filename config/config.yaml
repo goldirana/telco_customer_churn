@@ -17,3 +17,9 @@ artifacts:
 model:
   root_dir: models
   saved_model: models
+  
+dags_hub: 
+  repo_owner: goldirana1111
+  repo_name: telco_customer_churn
+  tracking_ui: https://dagshub.com/goldirana1111/telco_customer_churn.mlflow
+
