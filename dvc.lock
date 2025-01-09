@@ -14,20 +14,20 @@ stages:
       size: 1086
     params:
       params.yaml:
-        make_dataset.test_size: 0.2
+        make_dataset.test_size: 0.1
     outs:
     - path: data/interim
       hash: md5
-      md5: f2a9fc96ea289610deff66f3d4b6712e.dir
-      size: 776271
+      md5: 8b3f9c5e38ccba135ff4fc82f0cf26e4.dir
+      size: 873869
       nfiles: 1
   build_data:
     cmd: src/pipeline/stage1_build_data.py
     deps:
     - path: ../data/interim/test/test.csv
       hash: md5
-      md5: 6152a9fdcd3f3924caf11826f16d49d3
-      size: 195230
+      md5: 97685cb2b7dd467cb72b11c822f623f5
+      size: 97632
     - path: ../data/interim/train/train.csv
       hash: md5
       md5: 9db997ad85556edc689cbafc156129ab
@@ -36,7 +36,6 @@ stages:
       hash: md5
       md5: 22e439359aef799e7e998fcf008ae56c
       size: 4231
-      isexec: true
     params:
       params.yaml:
         data.drop_columns:
@@ -45,6 +44,37 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: d57900a2b23b4d3c3980db55b8647dbb.dir
-      size: 2489393
+      md5: d864e6c69bbd478cccbba5f5bfc666aa.dir
+      size: 2484508
       nfiles: 2
+  build_model:
+    cmd: src/pipeline/stage2_build_model.py
+    deps:
+    - path: data/processed/test/test.csv
+      hash: md5
+      md5: 528a700d77983c950800918050d4fa1f
+      size: 248901
+    - path: data/processed/train/train.csv
+      hash: md5
+      md5: 005f46521b750fdb0b14472f021d5c3f
+      size: 2235607
+    - path: src/pipeline/stage2_build_model.py
+      hash: md5
+      md5: 556dfcd8883c76658b253c4bed4b76b7
+      size: 1049
+    params:
+      params.yaml:
+        model.experiment_name: xxx
+        model.metrics:
+        - accuracy_score
+        - precision_score
+        - recall_score
+        model.model_args_name: random_forest_params
+        model.model_name: RandomForestClassifier
+        model.sub_model: ensemble
+    outs:
+    - path: models/
+      hash: md5
+      md5: deabdb138a3e6e12f250662da950fcbe.dir
+      size: 21877346
+      nfiles: 5

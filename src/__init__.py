@@ -1,9 +1,10 @@
 import logging
 import os
 import yaml
+from pathlib import Path
 
-
-log_dir = "../logs"
+log_dir = "logs"
+log_dir = str(Path(log_dir).resolve())
 log_file_name = "running.log"
 # create logs dir
 os.makedirs(log_dir, exist_ok=True)

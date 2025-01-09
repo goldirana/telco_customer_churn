@@ -19,4 +19,18 @@ stages:
       - data.drop_columns
     outs:
       - data/processed
-    
+  
+  build_model:
+    cmd: src/pipeline/stage2_build_model.py
+    deps:
+      - data/processed/train/train.csv
+      - data/processed/test/test.csv
+      - src/pipeline/stage2_build_model.py
+    params:
+      - model.experiment_name
+      - model.sub_model
+      - model.model_name
+      - model.metrics
+      - model.model_args_name
+    outs:
+      - models/

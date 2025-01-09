@@ -22,3 +22,15 @@ class FeatureEngineeringConfig:
     processed_test: str
     col_names_to_save: str
     target_encoder_dir: str
+
+@dataclass(frozen=True)
+class ModelBuildingConfig:
+    model_dir: str
+    sub_module: str
+    model_name: str
+    train_dir: str
+    target_col: str
+    experiment_name: str
+    metrics: list
+    save_model_path: str
+    model_params: dict

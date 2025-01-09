@@ -7,7 +7,8 @@ from src.constants import *
 from src import logger
 from src.utils.common import read_yaml
 from src.entity.config_entity import (DataIngestionConfig,
-                                      FeatureEngineeringConfig)
+                                      FeatureEngineeringConfig,
+                                      ModelBuildingConfig)
 
 logger.name = "Configuration Manager"
 
@@ -40,3 +41,27 @@ class ConfigurationManager:
             target_encoder_dir=self.config.artifacts.target_encoder_dir
         )
         return feature_engineering_conf
+    
+    def get_model_building_config(self)-> ModelBuildingConfig:
+        model_args_name = self.params.model.model_args_name
+        model_building_conf = ModelBuildingConfig(
+            model_dir=self.config.model.root_dir,
+            sub_module=self.params.model.sub_model,
+            model_name=self.params.model.model_name,
+            train_dir=self.config.data_directory.processed_train,
+            target_col=self.params.data.target_col,
+            experiment_name=self.params.model.experiment_name,
+            metrics=self.params.model.metrics,
+            save_model_path=self.config.model.root_dir,
+            model_params=self.params.model_params[model_args_name]
+        )
+        return model_building_conf
+    
+
+if __name__ == "__main__":
+    config_manager = ConfigurationManager()
+    print(config_manager.params)
+    model_args_name=config_manager.params.model.model_args_name
+    model_params=config_manager.params.model_params[model_args_name]
+    print(model_args_name)
+    print(model_params)
