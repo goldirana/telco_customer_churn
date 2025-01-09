@@ -21,3 +21,4 @@ class FeatureEngineeringConfig:
     processed_train: str
     processed_test: str
     col_names_to_save: str
+    target_encoder_dir: str

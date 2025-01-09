@@ -3,14 +3,15 @@
 data_directory:
   root_dir: data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
   interim_train: data/interim/train/train.csv
-  interim_test: data/interim/test/test.csv
-  processed_train: ../data/processed/train/train.csv
+  interim_test: ../data/interim/test/test.csv
+  processed_train: data/processed/train/train.csv
   processed_test: data/processed/test/test.csv
 
 artifacts:
   encoder: artifacts/encoder.pkl
   scalar: artifacts/scalar.pkl
   col_names_to_save: artifacts/col_names.json
+  target_encoder_dir: artifacts/target_encoder.pkl
 
 model:
   root_dir: models

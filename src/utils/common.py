@@ -25,9 +25,9 @@ def create_directory(path: str, is_extension_present: bool=True)-> None:
         if _ == False:
             os.makedirs(path, exist_ok=True) # create directoy at given location
             logger.info("Creating directory at %s", path)
-        else: 
-            os.makedirs(str(path), exist_ok=True)
-            logger.info("Deleting previous directory and creating directory at %s", path)
+        # else: 
+        #     os.makedirs(str(path), exist_ok=Fa)
+        #     logger.info("Deleting previous directory and creating directory at %s", path)
     except Exception as e:
         logger.error(f"Error occured while creating directory at {path} \n{e}")
 

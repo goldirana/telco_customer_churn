@@ -12,8 +12,8 @@ stages:
   build_data:
     cmd: src/pipeline/stage1_build_data.py
     deps:
-      - data/interim/train/train.csv
-      - data/interim/test/test.csv
+      - ../data/interim/train/train.csv
+      - ../data/interim/test/test.csv
       - src/pipeline/stage1_build_data.py
     params:
       - data.drop_columns

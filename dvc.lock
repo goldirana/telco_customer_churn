@@ -18,24 +18,25 @@ stages:
     outs:
     - path: data/interim
       hash: md5
-      md5: 9b76daba3eb51f3f6ea9a5d854315501.dir
-      size: 971501
-      nfiles: 2
+      md5: f2a9fc96ea289610deff66f3d4b6712e.dir
+      size: 776271
+      nfiles: 1
   build_data:
     cmd: src/pipeline/stage1_build_data.py
     deps:
-    - path: data/interim/test/test.csv
+    - path: ../data/interim/test/test.csv
       hash: md5
       md5: 6152a9fdcd3f3924caf11826f16d49d3
       size: 195230
-    - path: data/interim/train/train.csv
+    - path: ../data/interim/train/train.csv
       hash: md5
       md5: 9db997ad85556edc689cbafc156129ab
       size: 776271
     - path: src/pipeline/stage1_build_data.py
       hash: md5
-      md5: 729cb08b13f17d8a731ec48e7d540144
-      size: 3834
+      md5: 22e439359aef799e7e998fcf008ae56c
+      size: 4231
+      isexec: true
     params:
       params.yaml:
         data.drop_columns:
@@ -44,6 +45,6 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: 059973227797332ce2f9b2497ef23f79.dir
-      size: 499975
-      nfiles: 1
+      md5: d57900a2b23b4d3c3980db55b8647dbb.dir
+      size: 2489393
+      nfiles: 2

@@ -34,8 +34,9 @@ class ConfigurationManager:
             scalar_dir=self.config.artifacts.scalar,
             target_col=self.params.data.target_col,
             drop_cols=self.params.data.drop_columns,
-            processed_train=self.config.data_directory.processed_train,
-            processed_test=self.config.data_directory.processed_test,
-            col_names_to_save=self.config.artifacts.col_names_to_save
+            processed_train=str(Path(self.config.data_directory.processed_train).resolve()),
+            processed_test=str(Path(self.config.data_directory.processed_test).resolve()),
+            col_names_to_save=self.config.artifacts.col_names_to_save,
+            target_encoder_dir=self.config.artifacts.target_encoder_dir
         )
         return feature_engineering_conf

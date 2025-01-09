@@ -41,6 +41,11 @@ class FeatureEngineeringTrainPipeline:
             save_pickle(ss_fitter, config_params.scalar_dir)
             x_train = feature_eng.scalar_transform(ss_fitter, x_train)
             
+            # Target encoding
+            target_fitter = feature_eng.fit_label_encoder(y_train)
+            save_pickle(target_fitter, config_params.target_encoder_dir)
+            y_train = target_fitter.transform(y_train)
+
             # Saving data
             x_train[config_params.target_col] = y_train
             data_ingestion.save_dataframe(x_train, config_params.processed_train)
@@ -63,6 +68,7 @@ class FeatureEngineeringTrainPipeline:
             # Read encoders
             fitter = read_pickle(config_params.encoder_dir)
             ss_fitter = read_pickle(config_params.scalar_dir)
+            target_fitter = read_pickle(config_params.target_encoder_dir)
 
             # transform data
             x_test = feature_eng.encoder_transform(fitter, x_test)
@@ -70,9 +76,12 @@ class FeatureEngineeringTrainPipeline:
             x_test = feature_eng.scalar_transform(ss_fitter, x_test)
             assert type(x_test) == pd.DataFrame, logger.warning("data not a pandas frame")
 
+            # Target encoding
+            y_train = target_fitter.transform(y_train)
+            
             # Saving data
             x_test[config_params.target_col] = y_train
-            data_ingestion.save_dataframe(x_test, config_params.processed_train)
+            data_ingestion.save_dataframe(x_test, config_params.processed_test)
        
         except Exception as e:
             logger.error(e)
