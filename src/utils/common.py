@@ -67,7 +67,7 @@ def check_directory_path(path: str) -> None:
 @ensure_annotations
 def read_yaml(path: str, format: str="r"):
     try:
-        with open(path, "r") as f:
+        with open(path, format                     ) as f:
             params = yaml.safe_load(f)
             logger.info("Yaml read successfully from %s", path)
             return ConfigBox(params)
@@ -128,3 +128,17 @@ def save_col_names(data: pd.DataFrame, path_to_json: str):
         logger.info(f"Column name saved at: {path_to_json}")
     except Exception as e:
         logger.error(e)
+
+def read_json(path):
+    try:
+        with open(path, "r") as f:
+            params = json.load(f)
+            logger.info("Json object read sucessfully ")
+            if params == None:
+                logger.info("Json not read")
+        print(params)
+        return params
+        
+    except Exception as e:
+        logger.info(e)
+        raise e        

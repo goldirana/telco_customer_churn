@@ -52,6 +52,7 @@ class ConfigurationManager:
             train_dir=self.config.data_directory.processed_train,
             target_col=self.params.data.target_col,
             experiment_name=self.params.model.experiment_name,
+            parent_run_dir=self.config.artifacts.parent_run_dir,
             metrics=self.params.model.metrics,
             save_model_path=self.config.model.root_dir,
             model_params=self.params.model_params[model_args_name]        )
@@ -63,7 +64,8 @@ class ConfigurationManager:
         test_dir=str(Path(self.config.data_directory.processed_test).resolve()),
         metrics=self.params.model.metrics,
         target_col=self.params.data.target_col,
-        experiment_name=self.params.model.experiment_name)
+        experiment_name=self.params.model.experiment_name,
+        parent_run_dir=self.config.artifacts.parent_run_dir)
         return model_evaluator_config
 
 if __name__ == "__main__":
@@ -74,3 +76,5 @@ if __name__ == "__main__":
     print(model_args_name)
     print(model_params)
     print(config_manager.get_evaluation_config())
+    print("--"*30)
+    print(config_manager.get_model_building_config())

@@ -31,9 +31,11 @@ class ModelBuildingConfig:
     train_dir: str
     target_col: str
     experiment_name: str
+    parent_run_dir: str
     metrics: list
     save_model_path: str
     model_params: dict
+    
     
 @dataclass
 class ModelEvaluationConfig:
@@ -42,3 +44,4 @@ class ModelEvaluationConfig:
     metrics: list
     target_col: str
     experiment_name: str
+    parent_run_dir: str

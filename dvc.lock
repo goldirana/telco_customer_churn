@@ -60,8 +60,8 @@ stages:
       size: 2235607
     - path: src/models/train_model.py
       hash: md5
-      md5: 87bf07f80bd9c2191879619c083537f0
-      size: 2743
+      md5: ea681d042ced00a7905fee24ccb96e03
+      size: 4230
     - path: src/pipeline/stage2_build_model.py
       hash: md5
       md5: 556dfcd8883c76658b253c4bed4b76b7
@@ -78,19 +78,19 @@ stages:
         model.sub_model: ensemble
         model_params:
           random_forest_params:
-            n_estimators: 10
+            n_estimators: 100
             criterion: gini
-            max_depth: 3
-            min_samples_split: 2
-            min_samples_leaf: 1
+            max_depth: 4
+            min_samples_split: 4
+            min_samples_leaf: 2
             max_features: sqrt
           LogisticRegression:
             penalty: l2
     outs:
     - path: models/
       hash: md5
-      md5: 86d47cc8fe86e9f54383f72fbfcdfd9b.dir
-      size: 17522
+      md5: 7786648c4480a0b9de8f095b738a0100.dir
+      size: 279648
       nfiles: 5
   model_evaluator:
     cmd: src/pipeline/stage3_model_evaluator.py
@@ -101,13 +101,13 @@ stages:
       size: 248901
     - path: models/
       hash: md5
-      md5: 86d47cc8fe86e9f54383f72fbfcdfd9b.dir
-      size: 17522
+      md5: 7786648c4480a0b9de8f095b738a0100.dir
+      size: 279648
       nfiles: 5
     - path: src/models/train_model.py
       hash: md5
-      md5: 87bf07f80bd9c2191879619c083537f0
-      size: 2743
+      md5: ea681d042ced00a7905fee24ccb96e03
+      size: 4230
     - path: src/pipeline/stage3_model_evaluator.py
       hash: md5
       md5: b425e3781d415c40ec1bb98a11f3062a
@@ -123,11 +123,11 @@ stages:
         model.sub_model: ensemble
         model_params:
           random_forest_params:
-            n_estimators: 10
+            n_estimators: 100
             criterion: gini
-            max_depth: 3
-            min_samples_split: 2
-            min_samples_leaf: 1
+            max_depth: 4
+            min_samples_split: 4
+            min_samples_leaf: 2
             max_features: sqrt
           LogisticRegression:
             penalty: l2

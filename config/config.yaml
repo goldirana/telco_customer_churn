@@ -12,6 +12,7 @@ artifacts:
   scalar: artifacts/scalar.pkl
   col_names_to_save: artifacts/col_names.json
   target_encoder_dir: artifacts/target_encoder.pkl
+  parent_run_dir: artifacts/experiment_params.json
 
 model:
   root_dir: models
