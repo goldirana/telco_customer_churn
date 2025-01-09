@@ -8,7 +8,8 @@ from src import logger
 from src.utils.common import read_yaml
 from src.entity.config_entity import (DataIngestionConfig,
                                       FeatureEngineeringConfig,
-                                      ModelBuildingConfig)
+                                      ModelBuildingConfig,
+                                      ModelEvaluationConfig)
 
 logger.name = "Configuration Manager"
 
@@ -53,10 +54,17 @@ class ConfigurationManager:
             experiment_name=self.params.model.experiment_name,
             metrics=self.params.model.metrics,
             save_model_path=self.config.model.root_dir,
-            model_params=self.params.model_params[model_args_name]
-        )
+            model_params=self.params.model_params[model_args_name]        )
         return model_building_conf
     
+    def get_evaluation_config(self)-> ModelEvaluationConfig:
+        model_evaluator_config = ModelEvaluationConfig(
+        saved_model_dir=self.config.model.saved_model,
+        test_dir=str(Path(self.config.data_directory.processed_test).resolve()),
+        metrics=self.params.model.metrics,
+        target_col=self.params.data.target_col,
+        experiment_name=self.params.model.experiment_name)
+        return model_evaluator_config
 
 if __name__ == "__main__":
     config_manager = ConfigurationManager()
@@ -65,3 +73,4 @@ if __name__ == "__main__":
     model_params=config_manager.params.model_params[model_args_name]
     print(model_args_name)
     print(model_params)
+    print(config_manager.get_evaluation_config())

@@ -26,11 +26,27 @@ stages:
       - data/processed/train/train.csv
       - data/processed/test/test.csv
       - src/pipeline/stage2_build_model.py
+      - src/models/train_model.py
     params:
       - model.experiment_name
       - model.sub_model
       - model.model_name
       - model.metrics
       - model.model_args_name
+      - model_params
     outs:
       - models/
+
+  model_evaluator:
+    cmd: src/pipeline/stage3_model_evaluator.py
+    deps:
+      - data/processed/test/test.csv
+      - src/pipeline/stage3_model_evaluator.py
+      - models/
+      - src/models/train_model.py
+    params:
+      - model.experiment_name
+      - model.sub_model
+      - model.model_name
+      - model.metrics
+      - model_params

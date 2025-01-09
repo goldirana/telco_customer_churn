@@ -58,6 +58,10 @@ stages:
       hash: md5
       md5: 005f46521b750fdb0b14472f021d5c3f
       size: 2235607
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 87bf07f80bd9c2191879619c083537f0
+      size: 2743
     - path: src/pipeline/stage2_build_model.py
       hash: md5
       md5: 556dfcd8883c76658b253c4bed4b76b7
@@ -72,9 +76,58 @@ stages:
         model.model_args_name: random_forest_params
         model.model_name: RandomForestClassifier
         model.sub_model: ensemble
+        model_params:
+          random_forest_params:
+            n_estimators: 10
+            criterion: gini
+            max_depth: 3
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features: sqrt
+          LogisticRegression:
+            penalty: l2
     outs:
     - path: models/
       hash: md5
-      md5: deabdb138a3e6e12f250662da950fcbe.dir
-      size: 21877346
+      md5: 86d47cc8fe86e9f54383f72fbfcdfd9b.dir
+      size: 17522
       nfiles: 5
+  model_evaluator:
+    cmd: src/pipeline/stage3_model_evaluator.py
+    deps:
+    - path: data/processed/test/test.csv
+      hash: md5
+      md5: 528a700d77983c950800918050d4fa1f
+      size: 248901
+    - path: models/
+      hash: md5
+      md5: 86d47cc8fe86e9f54383f72fbfcdfd9b.dir
+      size: 17522
+      nfiles: 5
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 87bf07f80bd9c2191879619c083537f0
+      size: 2743
+    - path: src/pipeline/stage3_model_evaluator.py
+      hash: md5
+      md5: b425e3781d415c40ec1bb98a11f3062a
+      size: 1147
+    params:
+      params.yaml:
+        model.experiment_name: xxx
+        model.metrics:
+        - accuracy_score
+        - precision_score
+        - recall_score
+        model.model_name: RandomForestClassifier
+        model.sub_model: ensemble
+        model_params:
+          random_forest_params:
+            n_estimators: 10
+            criterion: gini
+            max_depth: 3
+            min_samples_split: 2
+            min_samples_leaf: 1
+            max_features: sqrt
+          LogisticRegression:
+            penalty: l2

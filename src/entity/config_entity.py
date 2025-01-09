@@ -34,3 +34,11 @@ class ModelBuildingConfig:
     metrics: list
     save_model_path: str
     model_params: dict
+    
+@dataclass
+class ModelEvaluationConfig:
+    saved_model_dir: str
+    test_dir: str
+    metrics: list
+    target_col: str
+    experiment_name: str

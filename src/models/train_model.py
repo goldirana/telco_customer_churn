@@ -34,6 +34,13 @@ class BuildModel:
 
     def log_metrics(self, model, metrics: list, y_true, y_pred, data_name:str="Train"):
         try:
+
+            if data_name != "Train": 
+                mlflow.set_experiment(self.config.experiment_name)
+                mlflow.start_run(nested=True)
+            else:
+                mlflow.set_experiment(self.config.experiment_name)
+            
             for metric in metrics:
                 module = import_module("sklearn.metrics")
                 metric_func = getattr(module, metric)
@@ -49,7 +56,8 @@ class BuildModel:
             # initiating model
             mlflow.set_experiment(self.config.experiment_name)
             mlflow.start_run()
-            model = model()
+            mlflow.log_params(self.config.model_params)
+            model = model(**self.config.model_params)
             # fit model
             model.fit(x_train, y_train)
             logger.info("Model Fitted sucessfully")
